@@ -3,7 +3,7 @@ import requests
 import numpy as np
 
 # link to the item's search page on MercadoLibre
-link = 'https://listado.mercadolibre.com.ar/playstation-4#D[A:playstation%204]'
+link = 'https://listado.mercadolibre.com.ar/planchita-babyliss#D[A:planchita%20babyliss]'
 
 def get_prices_by_link(link):
     # get source
@@ -19,7 +19,7 @@ def get_prices_by_link(link):
     item_prices = []
 
     for result in search_results:
-        price_as_text = result.find("span", {"class":"price-tag-fraction"}).text
+        price_as_text = result.find("div", {"class":"ui-search-price__second-line shops__price-second-line"}).find("span", {"class":"price-tag-fraction"}).text
         price = float(price_as_text.replace(".", ""))
         item_prices.append(price)
 
